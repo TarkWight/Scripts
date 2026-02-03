@@ -73,13 +73,19 @@ echo Начинаю распаковку...
 :: ================================================
 :: 6. Распаковка архива в zdy (нужен 7-Zip)
 :: ================================================
-set "SEVENZIP=C:\Program Files\7-Zip\7z.exe"
+:: 6.1 Обновите путь, если 7-Zip не находится в стандартном месте
+:: ================================================
+set "SEVENZIP=C:\Program Files\7-Zip\7z.exe" :: стандартный путь
 
 if not exist "%SEVENZIP%" (
-    set "SEVENZIP=C:\Program Files (x86)\7-Zip\7z.exe"
+    set "SEVENZIP=C:\Program Files (x86)\7-Zip\7z.exe" :: альтернативный путь   
 )
 if not exist "%SEVENZIP%" (
-    echo 7-Zip не найден! Установи 7-Zip и попробуй снова.
+    set "SEVENZIP=Диск:\Ваш\Путь\К\7-Zip\7z.exe" :: ваш путь к 7-Zip
+)
+
+if not exist "%SEVENZIP%" (
+    echo 7-Zip не найден! Установите 7-Zip и попробуйте запустить скрипт снова.
     pause
     exit /b
 )
